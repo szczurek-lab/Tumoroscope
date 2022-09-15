@@ -1,0 +1,62 @@
+{
+    "criteria": {
+        "offset":1,
+        "st_read_limit":0,
+        "var_calculation" : true
+    },
+
+    "results": {
+          "text_result": "inferred_vars",
+          "data_tumoroscope_inputs" : "prostate_tumoroscope_input/generated/",
+          "output" : "Results_output"
+    },
+    "structure": {
+          "optimal_rate": 0.40,
+          "pi_2D": true,
+          "all_spots": false
+    },
+    "observed": {
+      "P1.2": "prostate_tumoroscope_input/vardict2_st_calling/vardict2_1.2.ac",
+      "P2.4": "prostate_tumoroscope_input/vardict2_st_calling/vardict2_2.4.ac",
+      "P3.3": "prostate_tumoroscope_input/vardict2_st_calling/vardict2_3.3.ac"
+    },
+    "C_variation": {
+        "WES_file" : "prostate_tumoroscope_input/ssm_data.txt",
+        "phyloWGS": "prostate_tumoroscope_input/union_mutations",
+        "tree": 3350,
+        "selected_canopy_tree": "prostate_tumoroscope_input/C_tree_1.txt",
+        "method" : "canopy"
+    },
+    "n_variation":{
+        "n_sampling" : true,
+        "n_file" : "prostate_tumoroscope_input/prostate_cell_count_annotation.txt"
+    },
+   "Z_variation":{
+         "avarage_clone_in_spot" : 1.5,
+          "threshold": 0.8
+   },
+   "sampling":{
+      "onLaptop" : false,
+      "max_iter" : 800,
+      "min_iter" : 500,
+      "burn_in" : 100,
+      "batch" : 100,
+      "every_n_sample" : 5,
+      "changes_batch" : 10
+   },
+   "Gamma": {
+      "phi_gamma" : [0.1, 0.5],
+      "F_epsilon" : [2, 1],
+      "F_fraction": true,
+      "F_file": "prostate_tumoroscope_input/F_tree_1.txt"
+   },
+     "theta": {
+    "gamma" : 1,
+    "theta_variable" : false
+   }
+}
+
+
+
+
+
