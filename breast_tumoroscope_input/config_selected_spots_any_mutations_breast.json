@@ -1,0 +1,66 @@
+{
+    "criteria": {
+        "offset":1,
+        "st_read_limit":0,
+        "var_calculation" : true
+    },
+    "results": {
+          "text_result": "inferred_vars_",
+          "data_tumoroscope_inputs" : "breast_tumoroscope_input/"
+    },
+    "structure": {
+          "section": "all",
+          "optimal_rate": 0.40,
+          "pi_2D": true,
+          "all_spots": false
+    },
+    "observed": {
+      "112_C1": "breast_tumoroscope_input/st_reads/vardict_st_calls_112_C1.ac",
+      "112_D1": "breast_tumoroscope_input/st_reads/vardict_st_calls_112_D1.ac",
+      "113_A1": "breast_tumoroscope_input/st_reads/vardict_st_calls_113_A1.ac",
+      "113_B1": "breast_tumoroscope_input/st_reads/vardict_st_calls_113_B1.ac",
+      "114_C1": "breast_tumoroscope_input/st_reads/vardict_st_calls_114_C1.ac",
+      "114_D1": "breast_tumoroscope_input/st_reads/vardict_st_calls_114_D1.ac"
+
+    },
+    "C_variation": {
+        "WES_file" : "breast_tumoroscope_input/ssm_data.txt",
+        "phyloWGS": "union_input/union_mutations",
+        "tree": 3350,
+        "selected_canopy_tree": "breast_tumoroscope_input/C_tree_1.txt",
+        "method" : "canopy"
+    },
+    "n_variation":{
+        "n_sampling" : true,
+        "n_file" : "breast_tumoroscope_input/breast_cell_count_annotation_new_version.txt"
+    },
+   "Z_variation":{
+         "avarage_clone_in_spot" : 1.5,
+          "threshold": 0.8
+   },
+   "sampling":{
+      "onLaptop" : false,
+      "max_iter" : 250000,
+      "min_iter" : 80000,
+      "burn_in" : 20000,
+      "batch" : 5000,
+      "every_n_sample" : 50,
+     "changes_batch" : 5000
+   },
+   "Gamma": {
+      "phi_gamma" : [0.1, 0.5],
+      "F_epsilon" : [2, 1],
+      "F_fraction": true,
+      "F_file": "breast_tumoroscope_input/F_tree_1.txt"
+   },
+     "theta": {
+    "gamma" : 0.95,
+    "theta_variable" : false
+   }
+}
+
+
+
+
+
+
