@@ -208,7 +208,7 @@ class tumoroscope:
         self.iter_current =  0
         self.counter_p_z = 0
         if n_sampling==True:
-            sample = sim.simulation(K=K, S=S, r=r, p=p, I=I, F=F, D=D, A=A, C=C,
+            sample = sim(K=K, S=S, r=r, p=p, I=I, F=F, D=D, A=A, C=C,
                                     avarage_clone_in_spot=avarage_clone_in_spot, random_seed=seed, F_epsilon=F_epsilon,
                                     n=n_lambda, p_c_binom=None, theta=theta, Z=None, n_lambda=n_lambda,F_fraction=False,theta_variable = theta_variable,gamma=gamma,pi_2D=pi_2D)
             n = sample.n
@@ -217,7 +217,7 @@ class tumoroscope:
             if pi_2D is True:
                 self.calculating_zeta_s( n_lambda, avarage_clone_in_spot, K)
         else:
-            sample = sim.simulation(K=K, S=S, r=r, p=p, I=I, F=F, D=D, A=A, C=C,
+            sample = sim(K=K, S=S, r=r, p=p, I=I, F=F, D=D, A=A, C=C,
                                     avarage_clone_in_spot=avarage_clone_in_spot, random_seed=seed, F_epsilon=F_epsilon,
                                     n=n_lambda, p_c_binom=None, theta=theta, Z=None, n_lambda=n_lambda,F_fraction=F_fraction,theta_variable = theta_variable,gamma=gamma,pi_2D=pi_2D)
             n = sample.n

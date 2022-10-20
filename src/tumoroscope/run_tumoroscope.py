@@ -6,7 +6,7 @@ import random
 import os
 import pandas as pd
 import json
-import seaborn as sns;
+import seaborn as sns
 from tumoroscope import pre_processing
 
 sns.set_theme(color_codes=True)
@@ -17,7 +17,7 @@ sns.set_theme(color_codes=True)
 # sys.argv = ['run_tumoroscope_breast.py', 'Results_temp' ,'breast_tumoroscope_input/config_selected_spots_any_mutations_breast.json' ,'False' ,'True', 'True' ,'True','True','False']
 # sys.argv = ['run_tumoroscope_any_input.py', 'Results_temp' ,'prostate_tumoroscope_input/config_selected_spots_any_mutations_prostate.json' ,'False' ,'True', 'True'
 # ,'True','True','False']
-def run_tumoroscope(config):
+def run_tumoroscope(config,output):
     plot_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
                    '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
     # col = (plt.get_cmap('Pastel1').colors[8],)+plt.get_cmap('Set2').colors[2:5]+plt.get_cmap('Accent').colors[6:7]+plt.get_cmap('tab10').colors[3:4]+plt.get_cmap('tab10').colors[8:9]
@@ -51,7 +51,7 @@ def run_tumoroscope(config):
     with open(config) as json_data_file:
         data = json.load(json_data_file)
 
-    result_dir = data['results']['output']
+    result_dir = output#data['results']['output']
     ### making st data structure
     ### can be change by changing the data
     sections_n_file = []
@@ -236,7 +236,7 @@ def run_tumoroscope(config):
     if vis_observed == True:
         print("###################### Visualization of the observed variables  ####################")
         visualization_dir = result_dir + '/visualization_' + data['structure']['section']
-        vis_1 = vis.visualization(visualization_dir)
+        vis_1 = vis(visualization_dir)
         vis_1.plot_F_gamma(F_epsilon, F, plot_colors)
         vis_1.hist_matrix(A_df['value'].values.flatten(), 50, 'A')
         vis_1.hist_matrix(D_df['value'].values.flatten(), 50, 'D')
@@ -251,7 +251,7 @@ def run_tumoroscope(config):
 
     print("###################### Start of the sampling  ####################")
     if run_sampling is True:
-        tum_1 = tum.tumoroscope(name=result_obj, K=len(C_ik.columns), S=len(n_s_data['barcode']),
+        tum_1 = tum(name=result_obj, K=len(C_ik.columns), S=len(n_s_data['barcode']),
                                 r=np.array(data['Gamma']['phi_gamma'])[0], p=np.array(data['Gamma']['phi_gamma'])[1],
                                 I=len(C_ik), avarage_clone_in_spot=data['Z_variation']['avarage_clone_in_spot'], F=F,
                                 C=C_ik.to_numpy(), A=A.to_numpy(), D=D.to_numpy(), F_epsilon=F_epsilon,

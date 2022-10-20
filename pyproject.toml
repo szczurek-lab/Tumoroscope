@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tumoroscope"
-version = "0.0.3"
+version = "0.0.5"
 authors = [
   { name="Shadi Darvish Shafighi", email="shafighi@mimuw.edu.pl" },
 ]

@@ -1,8 +1,8 @@
 
-from tumoroscope.tumoroscope import simulation as sim
-from tumoroscope.tumoroscope import visualization as vis
+from tumoroscope.simulation import simulation as sim
+from tumoroscope.visualization import visualization as vis
 from tumoroscope.tumoroscope import tumoroscope as tum
-from tumoroscope.tumoroscope import constants
+from tumoroscope import constants
 import pickle
 import numpy as np
 import random
@@ -81,7 +81,7 @@ result_df = pd.DataFrame(result)
 #os.chdir("configs")
 for file in glob.glob(config_file +"/*.json"):
     file_name = re.split("/|.json",file)[2]
-    vis_1 = vis.visualization(constants.RESULTS + '/n_var_' + file_name + '_' + constants.VISUALIZATION)
+    vis_1 = vis(constants.RESULTS + '/n_var_' + file_name + '_' + constants.VISUALIZATION)
     with open(file) as json_data_file:
         data = json.load(json_data_file)
 
@@ -150,7 +150,7 @@ for file in glob.glob(config_file +"/*.json"):
 
     n_lambda = np.tile(data['n_variation']['n_lambda'], (S))
     while(True):
-        sample_1 = sim.simulation(K=K,S=S,r=phi_gamma[0],p=phi_gamma[1],I=I,F=F,D=None,A=None,C=C,avarage_clone_in_spot=avarage_clone_in_spot,random_seed=random.randint(1,100),F_epsilon= F_epsilon,n=n,p_c_binom=p_c_binom,theta=theta,Z = Z,n_lambda=n_lambda,F_fraction=F_fraction,theta_variable=theta_variable,gamma=gamma, pi_2D=pi_2D)
+        sample_1 = sim(K=K,S=S,r=phi_gamma[0],p=phi_gamma[1],I=I,F=F,D=None,A=None,C=C,avarage_clone_in_spot=avarage_clone_in_spot,random_seed=random.randint(1,100),F_epsilon= F_epsilon,n=n,p_c_binom=p_c_binom,theta=theta,Z = Z,n_lambda=n_lambda,F_fraction=F_fraction,theta_variable=theta_variable,gamma=gamma, pi_2D=pi_2D)
         if  np.mean(np.sum(sample_1.D, axis=0)) > int(data['Gamma']['mean_read']) - 2 and np.mean(np.sum(sample_1.D, axis=0)) < int(data['Gamma']['mean_read']) + 2:
             break
 
@@ -169,7 +169,7 @@ for file in glob.glob(config_file +"/*.json"):
 
     tum_objs = []
     for cc in range(constants.CHAINS):
-        tum_objs.append(tum.tumoroscope(name = constants.RESULTS +'/'+ file_name+'_chain_'+str(constants.CHAINS),K=sample_1.K,S=sample_1.S,r=phi_gamma_selected[0],p=phi_gamma_selected[1],I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = F_selected,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=F_epsilon_selected,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma = gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'.txt'))
+        tum_objs.append(tum(name = constants.RESULTS +'/'+ file_name+'_chain_'+str(constants.CHAINS),K=sample_1.K,S=sample_1.S,r=phi_gamma_selected[0],p=phi_gamma_selected[1],I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = F_selected,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=F_epsilon_selected,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma = gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'.txt'))
 
     args_map = tum_objs
 
@@ -180,7 +180,7 @@ for file in glob.glob(config_file +"/*.json"):
 
     pickle.dump(tum_all, open(constants.RESULTS+'/tum_all_'+file_name, 'wb'))
 
-    tum_average = tum.tumoroscope(name = constants.RESULTS +'/'+file_name+'avarage', K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'.txt')
+    tum_average = tum(name = constants.RESULTS +'/'+file_name+'avarage', K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'.txt')
 
     tum_average.max_iter = max_iter
     tum_average.burn_in = burn_in
@@ -233,12 +233,12 @@ for file in glob.glob(config_file +"/*.json"):
 
     ###### n fix
 
-    vis_2 = vis.visualization(constants.RESULTS+'/n_fix_'+file_name+'_'+constants.VISUALIZATION)
+    vis_2 = vis(constants.RESULTS+'/n_fix_'+file_name+'_'+constants.VISUALIZATION)
 
 
     tum_objs_n = []
     for cc in range(constants.CHAINS):
-        tum_objs_n.append(tum.tumoroscope(name = constants.RESULTS +'/'+file_name+'_n_chain_'+str(constants.CHAINS),K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D, result_txt= result_txt+file_name+'fixed_n.txt'))
+        tum_objs_n.append(tum(name = constants.RESULTS +'/'+file_name+'_n_chain_'+str(constants.CHAINS),K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D, result_txt= result_txt+file_name+'fixed_n.txt'))
 
     args_map = tum_objs_n
 
@@ -249,7 +249,7 @@ for file in glob.glob(config_file +"/*.json"):
 
     pickle.dump(tum_all_n, open(constants.RESULTS+'/tum_all_n_'+file_name, 'wb'))
 
-    tum_average_n = tum.tumoroscope(name= constants.RESULTS +'/'+file_name+'_n_average',K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'fixed_n.txt')
+    tum_average_n = tum(name= constants.RESULTS +'/'+file_name+'_n_average',K=sample_1.K,S=sample_1.S,r=sample_1.r,p=sample_1.p,I=sample_1.I,avarage_clone_in_spot=sample_1.avarage_clone_in_spot,F = sample_1.F,C = sample_1.C,A = sample_1.A,D = sample_1.D,F_epsilon=sample_1.F_epsilon,optimal_rate=optimal_rate,n_lambda = n_lambda_tum,gamma=gamma_sampling, pi_2D=pi_2D,result_txt=result_txt+file_name+'fixed_n.txt')
 
     tum_average_n.max_iter = max_iter
     tum_average_n.burn_in = burn_in
