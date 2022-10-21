@@ -235,7 +235,7 @@ def run_tumoroscope(config,output):
 
     if vis_observed == True:
         print("###################### Visualization of the observed variables  ####################")
-        visualization_dir = result_dir + '/visualization_' + data['structure']['section']
+        visualization_dir = result_dir + '/visualization'
         vis_1 = vis(visualization_dir)
         vis_1.plot_F_gamma(F_epsilon, F, plot_colors)
         vis_1.hist_matrix(A_df['value'].values.flatten(), 50, 'A')
@@ -246,8 +246,8 @@ def run_tumoroscope(config,output):
         g.ax_row_dendrogram.set_xlim([0, 0])
         g.savefig(result_dir + "/C_ik_clustered.png")
 
-    result_txt = result_dir + '/' + data['results']['text_result'] + data['structure']['section'] + '.txt'
-    result_obj = result_dir + '/' + data['results']['text_result'] + data['structure']['section']
+    result_txt = result_dir + '/' + data['results']['text_result']  + '.txt'
+    result_obj = result_dir + '/' + data['results']['text_result']
 
     print("###################### Start of the sampling  ####################")
     if run_sampling is True:
@@ -273,8 +273,7 @@ def run_tumoroscope(config,output):
 
     # vis_1.heatmap_seaborn(C_ik.to_numpy(), 'C_seaborn', 'clones', 'mutations', False, 0.5)
 
-    def post_tumoroscope(K, tum_1, spots_order, result_dir, section, visualization_dir, n_s_data, n_lambda, col, vis_1,
-                         sections_n_file):
+    def post_tumoroscope(K, tum_1, spots_order, result_dir, visualization_dir, n_s_data, n_lambda, col, vis_1,sections_n_file):
 
         print("###################### saving and visualizing the results  ####################")
         tree_clones = [f"C{i}" for i in range(1, (K + 1))]
@@ -283,11 +282,11 @@ def run_tumoroscope(config,output):
         inferred_p_z = pd.DataFrame(data=tum_1.inferred_P_Z, index=spots_order, columns=tree_clones).round(3)
         inferred_n = pd.DataFrame(data=tum_1.inferred_n, index=spots_order, columns=['n']).round(3)
 
-        inferred_h.to_csv(result_dir + '/' + section + '_h.txt', header=tree_clones, sep='\t', mode='w')
-        inferred_z.to_csv(result_dir + '/' + section + '_z.txt', header=tree_clones, sep='\t', mode='w')
-        inferred_n.to_csv(result_dir + '/' + section + '_n.txt', header=[section], sep='\t', mode='w')
+        inferred_h.to_csv(result_dir + '/h.txt', header=tree_clones, sep='\t', mode='w')
+        inferred_z.to_csv(result_dir + '/z.txt', header=tree_clones, sep='\t', mode='w')
+        inferred_n.to_csv(result_dir + '/n.txt', header='cell', sep='\t', mode='w')
 
-        pre_processing.plot_prior_inferred_n(n_lambda, tum_1.inferred_n, section, visualization_dir)
+        pre_processing.plot_prior_inferred_n(n_lambda, tum_1.inferred_n, visualization_dir)
 
         # n_s_data = pre_processing.adjusting_sections(n_s_data)
         # n_s_data.to_csv(result_dir + '/n_s_data.txt', header=n_s_data.columns, sep='\t', mode='w')
@@ -311,8 +310,7 @@ def run_tumoroscope(config,output):
         n_s_data['x'] = n_s_data['x'].astype(float)
         n_s_data['y'] = n_s_data['y'].astype(float)
         n_s_data['nuclei'] = n_s_data['nuclei'].astype(float)
-        post_tumoroscope(len(C_ik.columns), tum_1, n_s_data['barcode'], result_dir, data['structure']['section'],
+        post_tumoroscope(len(C_ik.columns), tum_1, n_s_data['barcode'], result_dir,
                          visualization_dir, n_s_data, n_s_data['nuclei'], col, vis_1, sections_n_file)
-
     # sys.stdout = orig_stdout
     # f.close()
