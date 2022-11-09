@@ -24,20 +24,30 @@
 ## Software requirements
 ### OS Requirements
 This package is supported for *macOS* and *Linux*. The package has been tested on the following systems:
-+ macOS: Mojave (10.14.1)
-+ Linux: Ubuntu 16.04
++ macOS
++ Linux
 
 ### Python Dependencies
 `tumoroscope` mainly depends on the Python scientific stack.
 
 ```
 numpy
-scipy
-Cython
-scikit-learn
 pandas
+matplotlib
 seaborn
+pickle5
+scipy
 ```
+
+# Setting up the development environment:
+
+- Install conda (https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
+- create a new envirnoment with python >=3.7 and activate it:
+```
+    conda create -n demo python=3.8
+    conda activate demo
+```
+
 
 # Installation Guide:
 
@@ -50,6 +60,8 @@ pip3 install tumoroscope
 
 This project is covered under the **GNU General Public License**.
 
+
+# Extra info
 
 Usage:
 ```
