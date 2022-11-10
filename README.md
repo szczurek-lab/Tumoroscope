@@ -12,7 +12,7 @@
 - [Installation Guide](#installation-guide)
 - [Setting up the development environment](#setting-up-the-development-environment)
 - [License](#license)
-- [Issues](https://github.com/neurodata/mgcpy/issues)
+- [Usage](#usage)
 
 # Overview
 ``tumoroscope``  The package utilizes a simple class structure to enhance usability while also allowing easy extension of the package for developers. The package can be installed on all major platforms (e.g. BSD, GNU/Linux, OS X, Windows)from Python Package Index (PyPI) and GitHub.
@@ -69,9 +69,8 @@ Installation time is less than one minute.
 This project is covered under the **GNU General Public License**.
 
 
-# Extra info
+# Usage
 
-Usage:
 
 As a demo, you can use demo01.ipynb in demo folder to generate a simulated data and run tumoroscope on that. In this notebook, at the end, you will plot the true values and the inferred values of the fraction of the clones in the spots in the x and y of the plot. Also, you can see the Mean Average Error (MAE) written above the plot as a result. The running time is 1-3 minutes.
 
