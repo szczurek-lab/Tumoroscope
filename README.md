@@ -48,6 +48,14 @@ scipy
     conda activate demo
 ```
 
+- Install conda on the jupyter notebook as well 
+```
+    conda install -c anaconda ipykernel
+```
+- Run the following command for having your created environment in jupyther notebook
+```
+    python -m ipykernel install --user --name=demo
+```
 
 # Installation Guide:
 
