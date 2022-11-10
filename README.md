@@ -1,4 +1,4 @@
-# tumoroscope
+# Tumoroscope
 
 [![PyPI](https://img.shields.io/pypi/v/mgcpy.svg)](https://pypi.org/project/tumoroscope/)
 [![DOI](https://zenodo.org/badge/147731955.svg)](https://doi.org/10.1101/2022.09.22.508914)
@@ -24,8 +24,8 @@
 ## Software requirements
 ### OS Requirements
 This package is supported for *macOS* and *Linux*. The package has been tested on the following systems:
-+ macOS
-+ Linux
++ macOS (ventura 13.0 and Catalina 10.15.7)
++ Linux (ubuntu 14.04)
 
 ### Python Dependencies
 `tumoroscope` mainly depends on the Python scientific stack.
@@ -63,7 +63,7 @@ scipy
 ```
 pip3 install tumoroscope
 ```
-
+Installation time is less than one minute.
 # License
 
 This project is covered under the **GNU General Public License**.
@@ -72,6 +72,10 @@ This project is covered under the **GNU General Public License**.
 # Extra info
 
 Usage:
+
+As a demo, you can use demo01.ipynb in demo folder to generate a simulated data and run tumoroscope on that. In this notebook, at the end, you will plot the true values and the inferred values of the fraction of the clones in the spots in the x and y of the plot. Also, you can see the Mean Average Error (MAE) written above the plot as a result. The running time is 1-3 minutes.
+
+Also, for applying on the real data, you can use the following code.
 ```
 from tumoroscope.run_tumoroscope import run_tumoroscope
 run_tumoroscope('configs/config_prostate.json')
