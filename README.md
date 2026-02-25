@@ -149,4 +149,8 @@ and the folder: "data_tumoroscope_inputs" : "prostate_tumoroscope_input/".
 
 ```
 
+# Funding
+
+We acknowledge the support from the National Genomics Infrastructure in Stockholm and Uppsala, funded by Science for Life Laboratory, the Knut and Alice Wallenberg Foundation, the Swedish Research Council, and SNIC/Uppsala Multidisciplinary Center for Advanced Computational Science for assistance with massively parallel sequencing and access to the UPPMAX computational infrastructure. This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 766030 and 844712, the Polish National Science Centre PRELUDIUM grant no. 2021/41/N/ST6/03619, the Polish National Science Centre OPUS grant no. 2019/33/B/NZ2/00956, the Polish National Science Centre SONATA BIS grant no. 2020/38/E/NZ2/00305, The Swedish Cancer Society, The Institut Universitaire de France (AC) and the Swedish Research Council Projekt 2018-06217VR.
+
 
